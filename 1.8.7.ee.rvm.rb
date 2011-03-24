@@ -19,8 +19,8 @@ end
 
 #required yacc parser
 dep 'bison.managed' do
-    installs {
-        via :apt, 'bison', :sudo => true
+    meet {
+        sudo('apt-get install bison')
     }
 end
 
