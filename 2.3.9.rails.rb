@@ -14,16 +14,16 @@ dep '2.3.9.rails.gem' do
 end 
 
 dep 'bundler.gem' do
-    met? { login_shell('gem list bundler')['bundler'] }
+    met? { login_shell('gem list bundler')['bundler (0.9.7)'] }
     meet { gem('install bundler --VERSION=0.9.7') }
 end
 
 dep 'heroku.gem' do
-    met? { login_shell('gem list')['heroku'] }
+    met? { login_shell('gem list heroku')['heroku'] }
     meet { gem('install heroku') }
 end
 
 dep 'thin.gem' do
-    met? { login_shell('gem list')['thin'] }
+    met? { login_shell('gem list thin')['thin'] }
     meet { gem('install thin') }
 end
