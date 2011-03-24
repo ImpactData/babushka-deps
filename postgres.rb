@@ -38,24 +38,6 @@ dep 'postgres access' do
   meet { sudo "createuser -SdR #{var :username}", :as => 'postgres' }
 end
 
-dep 'postgres backups' do
-  requires 'postgres.managed'
-  met? { shell "test -x /etc/cron.hourly/postgres_offsite_backup" }
-  before {
-    sudo("ssh #{var :offsite_host} 'true'").tap {|result|
-      if result
-        log_ok "publickey login to #{var :offsite_host}"
-      else
-        log_error "You need to add root's public key to #{var :offsite_host}:~/.ssh/authorized_keys."
-      end
-    }
-  }
-  meet {
-    render_erb 'postgres/offsite_backup.rb.erb', :to => '/usr/local/bin/postgres_offsite_backup', :perms => '755', :sudo => true
-    sudo "ln -sf /usr/local/bin/postgres_offsite_backup /etc/cron.hourly/"
-  }
-end
-
 dep 'pgadmin3.managed' do
     requires 'postgres.managed'
     meet{sudo("apt-get install pgadmin3")}
@@ -63,14 +45,8 @@ dep 'pgadmin3.managed' do
 end
 
 dep 'postgres.managed' do
-  requires {
-    on :apt, 'set.locale', 'postgres.ppa'
-    on :brew, 'set.locale'
-  }
-  meet {sudo("apt-get install postgresql postgresql-client libpq-dev") }
+  requires 'set.locale'
+  meet { sudo("apt-get install postgresql postgresql-client libpq-dev") }
   provides 'psql'
 end
 
-dep 'postgres.ppa' do
-  adds 'ppa:pitti/postgresql'
-end
