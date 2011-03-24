@@ -9,12 +9,12 @@ dep '2.3.9.rails.enviro' do
 end
 
 dep '2.3.9.rails.gem' do
-    met? { login_shell('gem list')['rails-2.3.9'] }
+    met? { login_shell('gem list rails')['rails (2.3.9)'] }
     meet { gem('install rails --VERSION=2.3.9 --include-dependencies') }
 end 
 
 dep 'bundler.gem' do
-    met? { login_shell('gem list')['bundler'] }
+    met? { login_shell('gem list bundler')['bundler'] }
     meet { gem('install bundler --VERSION=0.9.7') }
 end
 
