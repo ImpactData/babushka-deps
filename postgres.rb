@@ -57,12 +57,8 @@ dep 'postgres backups' do
 end
 
 dep 'pgadmin3.managed' do
-    requires {
-        on :apt, 'set.locale', 'postgres.ppa'
-    }
-    installs {
-        via :apt, 'pgadmin3'
-    }
+    requires 'postgres.managed'
+    meet{sudo("apt-get install pgadmin3")}
     provides 'pgadmin3'   
 end
 
