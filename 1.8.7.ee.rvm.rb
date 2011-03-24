@@ -18,7 +18,7 @@ dep '1.8.7.ee installed.rvm' do
 end
 
 #required yacc parser
-dep 'bison.managed'
+dep 'bison.managed' do
     installs {
         via :apt, 'bison', :sudo => true
     }
