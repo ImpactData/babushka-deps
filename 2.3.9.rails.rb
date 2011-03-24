@@ -1,5 +1,5 @@
 meta :gem do
-  def rvm args
+  def gem args
     shell "gem #{args}", :log => args['install']
   end
 end
