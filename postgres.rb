@@ -67,10 +67,7 @@ dep 'postgres.managed' do
     on :apt, 'set.locale', 'postgres.ppa'
     on :brew, 'set.locale'
   }
-  installs {
-    via :apt, %w[postgresql postgresql-client libpq-dev]
-    via :brew, 'postgresql'
-  }
+  meet {sudo("apt-get install postgresql postgresql-client libpq-dev") }
   provides 'psql'
 end
 
