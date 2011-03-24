@@ -1,5 +1,5 @@
 dep '2.3.9.rails.enviro' do
-    requires['2.3.9.rails', 'bundler.gem', 'heroku.gem', 'thin.gem']
+    requires '2.3.9.rails.gems', 'bundler.gem', 'heroku.gem', 'thin.gem' 
 end
 
 dep '2.3.9.rails.gems' do
