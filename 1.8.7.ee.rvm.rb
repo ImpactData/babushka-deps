@@ -8,7 +8,7 @@ end
 dep '1.8.7.ee.rvm' do
   requires '1.8.7.ee installed.rvm'
   met? { login_shell('ruby --version')['ruby 1.8.7'] }
-  meet { rvm('use 1.8.7 --default') }
+  meet { rvm('rvm use ree-1.8.7-head') }
 end
 
 dep '1.8.7.ee installed.rvm' do
