@@ -62,10 +62,10 @@ dep 'postgres.managed' do
     on :brew, 'set.locale'
   }
   installs {
-    via :apt, %w[postgresql postgresql-client libpq-dev], :sudo => true
+    via :apt, %w[postgresql postgresql-client libpq-dev]
     via :brew, 'postgresql'
   }
-  #provides 'psql ~> 9.0.0'
+  provides 'psql'
 end
 
 dep 'postgres.ppa' do
