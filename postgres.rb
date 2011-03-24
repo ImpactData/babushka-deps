@@ -7,9 +7,11 @@ end
 dep 'pgadmin3.native' do
     requires 'postgres.native'
     meet{sudo("apt-get install pgadmin3")}
+    provides 'pgadmin3'
 end
 
 dep 'postgres.native' do
-  meet { sudo("apt-get install postgresql postgresql-client libpq-dev") }
+    meet { sudo("apt-get install postgresql postgresql-client libpq-dev") }
+    provides 'psql'
 end
 
