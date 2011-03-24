@@ -41,12 +41,12 @@ end
 dep 'pgadmin3.managed' do
     requires 'postgres.managed'
     meet{sudo("apt-get install pgadmin3")}
-    provides 'pgadmin3'   
+    met?{ login_shell('pgadmin3 --version')['pgadmin3'] }   
 end
 
 dep 'postgres.managed' do
-  requires 'set.locale'
   meet { sudo("apt-get install postgresql postgresql-client libpq-dev") }
-  provides 'psql'
+  met?{ login_shell('psql --version')['psql'] }
+}
 end
 
