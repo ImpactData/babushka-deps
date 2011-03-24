@@ -47,6 +47,5 @@ end
 dep 'postgres.managed' do
   meet { sudo("apt-get install postgresql postgresql-client libpq-dev") }
   met?{ login_shell('psql --version')['psql'] }
-}
 end
 
