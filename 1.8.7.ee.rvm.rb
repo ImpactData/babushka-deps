@@ -12,7 +12,7 @@ dep '1.8.7.ee.rvm' do
 end
 
 dep '1.8.7.ee installed.rvm' do
-  requires ['rvm', 'bison']
+  requires ['rvm', 'bison.managed']
   met? { rvm('list')['ree-1.8.7-head'] }
   meet { log("rvm install ree-1.8.7-head") { rvm 'install ree-1.8.7-head'} }
 end
