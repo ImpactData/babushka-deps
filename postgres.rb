@@ -1,11 +1,11 @@
 dep 'postgres.native.access' do
-  requires 'postgres.managed', 'user exists'
+  requires 'postgres.native', 'user exists'
   met? { !sudo("echo '\\du' | #{which 'psql'}", :as => 'postgres').split("\n").grep(/^\W*\b#{var :username}\b/).empty? }
   meet { sudo "createuser -SdR #{var :username}", :as => 'postgres' }
 end
 
 dep 'pgadmin3.native' do
-    requires 'postgres.managed'
+    requires 'postgres.native'
     meet{sudo("apt-get install pgadmin3")}
 end
 
