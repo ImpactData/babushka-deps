@@ -13,11 +13,11 @@ end
 dep 'pgadmin3.native' do
     requires 'postgres.native'
     meet{aptget("pgadmin3")}
-    met? { login_shell('pgadmin3 --version')['pgadmin3'] }
+    met? { log_shell('pgadmin3 --version')['pgadmin3'] }
 end
 
 dep 'postgres.native' do
     meet { aptget("postgresql postgresql-client libpq-dev") }
-    met? { login_shell('psql --version')['psql'] }
+    met? { log_shell('psql --version')['psql'] }
 end
 
