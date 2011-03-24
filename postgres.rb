@@ -41,11 +41,9 @@ end
 dep 'pgadmin3.managed' do
     requires 'postgres.managed'
     meet{sudo("apt-get install pgadmin3")}
-    met?{ login_shell('pgadmin3 --version')['pgadmin3'] }   
 end
 
 dep 'postgres.managed' do
   meet { sudo("apt-get install postgresql postgresql-client libpq-dev") }
-  met?{ login_shell('psql --version')['psql'] }
 end
 
