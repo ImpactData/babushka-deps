@@ -1,23 +1,29 @@
+meta :gem do
+  def rvm args
+    shell "gem #{args}", :log => args['install']
+  end
+end
+
 dep '2.3.9.rails.enviro' do
     requires '2.3.9.rails.gems', 'bundler.gem', 'heroku.gem', 'thin.gem' 
 end
 
 dep '2.3.9.rails.gems' do
-    met? { shell_log('gem list')['rails-2.3.9'] }
-    meet { shell('gem install rails --VERSION=2.3.9 --include-dependencies') }
+    met? { login_shell('gem list')['rails-2.3.9'] }
+    meet { gem('install rails --VERSION=2.3.9 --include-dependencies') }
 end 
 
 dep 'bundler.gem' do
-    met? { shell_log('gem list')['bundler'] }
-    meet { shell('gem install bundler --VERSION=0.9.7') }
+    met? { login_shell('gem list')['bundler'] }
+    meet { gem('install bundler --VERSION=0.9.7') }
 end
 
 dep 'heroku.gem' do
-    met? { shell_log('gem list')['heroku'] }
-    meet { shell('gem install heroku') }
+    met? { login_shell('gem list')['heroku'] }
+    meet { gem('install heroku') }
 end
 
 dep 'thin.gem' do
-    met? { shell_log('gem list')['thin'] }
-    meet { shell('gem install thin') }
+    met? { login_shell('gem list')['thin'] }
+    meet { gem('install thin') }
 end
