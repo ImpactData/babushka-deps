@@ -5,7 +5,7 @@ meta :gem do
 end
 
 dep '2.3.9.rails.enviro' do
-    requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'pg.gem' 
+    requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem' 
 end
 
 dep '2.3.9.rails.gem' do
@@ -13,7 +13,7 @@ dep '2.3.9.rails.gem' do
     meet { gem('install rails --VERSION=2.3.9 --include-dependencies') }
 end 
 
-dep 'pg.gem' do
+dep 'postgres.gem' do
   requires 'postgres.access'
   met? { login_shell('gem list postgres')['postgres'] }
   meet { gem('install postgres') }

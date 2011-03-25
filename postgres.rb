@@ -11,6 +11,7 @@ dep 'postgres.access' do
   meet { 
     sudo "createuser -SdR #{var :username}", :as => 'postgres' 
     sudo "psql -U postgres -c \"ALTER USER #{var :username} WITH PASSWORD '#{var :password}'\"", :as => 'postgres' 
+    #sudo -u postgres psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'elvis'"
   }
 end
 
