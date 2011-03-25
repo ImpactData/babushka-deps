@@ -83,7 +83,7 @@ dep 'libmagickcoredev.aptget' do
     met?{ aptget('libmagickcore-dev') =~ /.*libmagickcore-dev is already the newest version.*/ }
 end 
 
-dep 'libmagickwanddev.aptget' do
+dep 'libmagickwanddev.managed' do
   installs { via :apt, 'libmagickwand-dev' }
   provides []
 end
