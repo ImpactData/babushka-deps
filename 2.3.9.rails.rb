@@ -14,7 +14,7 @@ dep '2.3.9.rails.enviro' do
     requires '1.8.7.ee.rvm', '2.3.9.rails.enviro.nativelibs', '2.3.9.rails.enviro.gems', 'mongo.aptget' 
 end
 
-dep '2.3.9.rails.enviro.gems'
+dep '2.3.9.rails.enviro.gems' do
     requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem'
 end
 
@@ -44,7 +44,7 @@ dep 'thin.gem' do
     meet { gem('install thin') }
 end
 
-dep '2.3.9.rails.enviro.nativelibs'
+dep '2.3.9.rails.enviro.nativelibs' do
     requires 'rubydev.aptget', 'libxml2dev.aptget', 'libsasl2dev.aptget' ,'libxsltdev.aptget', 'libxml2dev.aptget', 'imagemagick.aptget', 'libmagickcoredev.aptget', 'libmagickwanddev.aptget'
 end
 
