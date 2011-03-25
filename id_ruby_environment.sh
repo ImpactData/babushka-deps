@@ -27,7 +27,7 @@ babushka 'impactdata:2.3.9.rails.rb'
 #zsh # suggested - oh-my-zsh has useful stuff (aliases, colouring, etc.) for git
 #mongodb  
 
-#ruby-dev libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev # Needed to build certain gems
+# # Needed to build certain gems
 
 
 #then:

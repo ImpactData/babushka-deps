@@ -11,7 +11,11 @@ meta :aptget do
 end
 
 dep '2.3.9.rails.enviro' do
-    requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem', 'mongo.aptget' 
+    requires '2.3.9.rails.enviro.nativelibs', '2.3.9.rails.enviro.gems', 'mongo.aptget' 
+end
+
+dep '2.3.9.rails.enviro.gems'
+    requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem'
 end
 
 dep '2.3.9.rails.gem' do
@@ -40,11 +44,48 @@ dep 'thin.gem' do
     meet { gem('install thin') }
 end
 
+dep '2.3.9.rails.enviro.nativelibs'
+    requires 'rubydev.aptget', 'libxml2dev.aptget', 'libsasl2dev.aptget' ,'libxsltdev.aptget', 'libxml2dev.aptget', 'imagemagick.aptget', 'libmagickcoredev.aptget', 'libmagickwanddev.aptget'
+end
+
 dep 'rubydev.aptget' do
     meet{ aptget('ruby-dev')}
     met?{ aptget('ruby-dev') =~ /.*ruby-dev is already the newest version.*/ }
 end 
 
-#libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev
+dep 'libxml2dev.aptget' do
+    meet{ aptget('libxml2-dev')}
+    met?{ aptget('libxml2-dev') =~ /.*libxml2-dev is already the newest version.*/ }
+end 
+
+dep 'libsasl2dev.aptget' do
+    meet{ aptget('libsasl2-dev')}
+    met?{ aptget('libsasl2-dev') =~ /.*libsasl2-dev is already the newest version.*/ }
+end 
+
+dep 'libxsltdev.aptget' do
+    meet{ aptget('libxslt-dev')}
+    met?{ aptget('libxslt-dev') =~ /.*libxslt-dev is already the newest version.*/ }
+end 
+
+dep 'libxml2dev.aptget' do
+    meet{ aptget('libxml2-dev')}
+    met?{ aptget('libxml2-dev') =~ /.*libxml2-dev is already the newest version.*/ }
+end 
+
+dep 'imagemagick.aptget' do
+    meet{ aptget('imagemagick')}
+    met?{ aptget('imagemagick') =~ /.*imagemagick is already the newest version.*/ }
+end 
+
+dep 'libmagickcoredev.aptget' do
+    meet{ aptget('libmagickcore-dev')}
+    met?{ aptget('libmagickcore-dev') =~ /.*libmagickcore-dev is already the newest version.*/ }
+end 
+
+dep 'libmagickwanddev.aptget' do
+    meet{ aptget('libmagickwand-dev')}
+    met?{ aptget('libmagickwand-dev') =~ /.*libmagickwand-dev is already the newest version.*/ }
+end 
 
 
