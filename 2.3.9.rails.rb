@@ -4,8 +4,14 @@ meta :gem do
   end
 end
 
+meta :aptget do
+  def aptget args
+    sudo("apt-get install #{args}")
+  end
+end
+
 dep '2.3.9.rails.enviro' do
-    requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem' 
+    requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem', 'mongo.aptget' 
 end
 
 dep '2.3.9.rails.gem' do
@@ -33,3 +39,12 @@ dep 'thin.gem' do
     met? { login_shell('gem list thin')['thin'] }
     meet { gem('install thin') }
 end
+
+dep 'rubydev.aptget' do
+    meet{ aptget('ruby-dev')}
+    met?{ aptget('ruby-dev') =~ /.*ruby-dev is already the newest version.*/ }
+end 
+
+#libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev
+
+
