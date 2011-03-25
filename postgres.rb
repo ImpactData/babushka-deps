@@ -14,7 +14,7 @@ end
 dep 'pgadmin3.aptget' do
     requires 'postgres.aptget'
     meet{ aptget("pgadmin3")}
-    met?{ shell('pgadmin3 -h') =~ /.*pgadmin3.*/ }
+    met?{ shell('ls /usr/bin/pgadmin3') == "/usr/bin/pgadmin3" }
 end
 
 dep 'postgres.aptget' do
