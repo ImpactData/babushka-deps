@@ -8,7 +8,10 @@ end
 dep 'postgres.access' do
   requires 'pgadmin3.aptget', 'libpqdev.aptget'
   met? { !sudo("echo '\\du' | #{which 'psql'}", :as => 'postgres').split("\n").grep(/^\W*\b#{var :username}\b/).empty? }
-  meet { sudo "createuser -SdR #{var :username}", :as => 'postgres' }
+  meet { 
+    sudo "createuser -SdR #{var :username}", :as => 'postgres' 
+    sudo "psql -U postgres -c \"ALTER USER #{var :username} WITH PASSWORD '#{var :password}'\"", :as => 'postgres' 
+  }
 end
 
 dep 'libpqdev.aptget' do
