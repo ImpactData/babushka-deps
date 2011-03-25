@@ -5,11 +5,17 @@ meta :aptget do
   end
 end
 
-dep 'postgres.native.access' do
-  requires 'postgres.native', 'user exists'
+dep 'postgres.access' do
+  requires 'pgadmin3.aptget', 'libpqdev.aptget'
   met? { !sudo("echo '\\du' | #{which 'psql'}", :as => 'postgres').split("\n").grep(/^\W*\b#{var :username}\b/).empty? }
   meet { sudo "createuser -SdR #{var :username}", :as => 'postgres' }
 end
+
+dep 'libpqdev.aptget' do
+    requires 'postgres.aptget'
+    meet{ aptget("libpq-dev")}
+    met?{ shell('ls /usr/include/postgresql/libpq') == "/usr/include/postgresql/libpq" }
+end 
 
 dep 'pgadmin3.aptget' do
     requires 'postgres.aptget'
