@@ -1,22 +1,28 @@
-dep 'git_setup' do
-    requires 'git_username', 'git_email'    
+meta :git do
+  def git args
+    shell "git #{args}", :log => args['install']
+  end
 end
 
-dep 'git_username' do
+dep 'setup.git' do
+    requires 'username.git', 'email.git'    
+end
+
+dep 'username.git' do
     meet{ 
-        shell("git config --global user.name \"#{var :git_username}\"")
+        git("config --global user.name \"#{var :git_username}\"")
     }
     met?{
-        shell("git config --get user.name") == "#{var :git_username}"
+        git("config --get user.name") == "#{var :git_username}"
     }    
 end
 
-dep 'git_email' do
+dep 'email.git' do
     meet{ 
-        shell("git config --global user.email \"#{var :git_email}\"")
+        git("config --global user.email \"#{var :git_email}\"")
     }
     met?{
-        shell("git config --get user.email") == "#{var :git_email}"
+        git("config --get user.email") == "#{var :git_email}"
     }    
 end
 
