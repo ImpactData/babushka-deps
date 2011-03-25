@@ -31,6 +31,6 @@ end
 
 dep 'postgres.native' do
     meet { aptget("postgresql postgresql-client libpq-dev") }
-    met? { psql('--version') =~ /.*psql.*/ ] }
+    met? { psql('--version') =~ /.*psql.*/  }
 end
 
