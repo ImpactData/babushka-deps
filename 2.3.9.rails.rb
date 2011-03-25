@@ -11,7 +11,7 @@ meta :aptget do
 end
 
 dep '2.3.9.rails.enviro' do
-    requires '1.8.7.ee.rvm', '2.3.9.rails.enviro.nativelibs', '2.3.9.rails.enviro.gems', 'mongo.aptget' 
+    requires '1.8.7.ee.rvm', '2.3.9.rails.enviro.nativelibs', '2.3.9.rails.enviro.gems', 'mongo.aptget', 'git_setup' 
 end
 
 dep '2.3.9.rails.enviro.gems' do
@@ -87,5 +87,8 @@ dep 'libmagickwanddev.aptget' do
     meet{ aptget('libmagickwand-dev')}
     met?{ aptget('libmagickwand-dev') =~ /.*libmagickwand-dev is already the newest version.*/ }
 end 
+
+
+
 
 

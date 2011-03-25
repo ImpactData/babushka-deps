@@ -13,7 +13,7 @@ babushka 'core:git'
 babushka source -a impactdata git://github.com/MarkMagnus/squawk_babushka_dep.git
 
 #Install Ruby Enterprise 1.8.7 (suggest using RVM)
-#babushka 'impactdata:1.8.7.ee.rvm'
+babushka 'impactdata:1.8.7.ee.rvm'
 
 #Rails 2.3.9
 #gems:
