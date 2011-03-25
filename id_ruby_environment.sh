@@ -13,7 +13,7 @@ babushka 'core:git'
 babushka source -a impactdata git://github.com/MarkMagnus/squawk_babushka_dep.git
 
 #Install Ruby Enterprise 1.8.7 (suggest using RVM)
-babushka 'impactdata:1.8.7.ee.rvm'
+#babushka 'impactdata:1.8.7.ee.rvm'
 
 #Rails 2.3.9
 #gems:
@@ -27,7 +27,7 @@ babushka 'impactdata:2.3.9.rails.rb'
 #zsh # suggested - oh-my-zsh has useful stuff (aliases, colouring, etc.) for git
 #mongodb  
 
-# # Needed to build certain gems
+#ruby-dev libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev # Needed to build certain gems
 
 
 #then:
