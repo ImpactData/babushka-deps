@@ -14,7 +14,7 @@ end
 dep 'libpqdev.aptget' do
     requires 'postgres.aptget'
     meet{ aptget("libpq-dev")}
-    met?{ shell('ls /usr/include/postgresql/libpq') == "/usr/include/postgresql/libpq" }
+    met?{ shell('ls /usr/include/postgresql/libpq') == "libpq-fs.h" }
 end 
 
 dep 'pgadmin3.aptget' do
