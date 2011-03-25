@@ -45,7 +45,7 @@ dep 'thin.gem' do
 end
 
 dep '2.3.9.rails.enviro.nativelibs' do
-    requires 'rubydev.aptget', 'libxml2dev.aptget', 'libsasl2dev.aptget' ,'libxsltdev.aptget', 'libxml2dev.aptget', 'imagemagick.aptget', 'libmagickcoredev.aptget', 'libmagickwanddev.aptget'
+    requires 'rubydev.aptget', 'libxml2dev.aptget', 'libsasl2dev.aptget' ,'libxsltdev.aptget', 'libxml2dev.aptget', 'imagemagick.aptget', 'libmagickcoredev.aptget', 'libmagickwanddev.managed'
 end
 
 dep 'rubydev.aptget' do
