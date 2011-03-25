@@ -65,7 +65,7 @@ end
 
 dep 'libxsltdev.aptget' do
     meet{ aptget('libxslt-dev')}
-    met?{ aptget('libxslt-dev') =~ /.*libxslt-dev is already the newest version.*/ }
+    met?{ aptget('libxslt-dev') =~ /.*libxslt1-dev is already the newest version.*/ }
 end 
 
 dep 'libxml2dev.aptget' do
