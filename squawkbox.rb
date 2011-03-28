@@ -5,12 +5,14 @@ meta :rake do
 end
 
 dep 'squawkbox.setup' do
-    var.set :rails_root, "#{shell('pwd')}/Squawkbox"
-    var.set :home_root, "#{shell('pwd')}"
     requires 'squawkbox.bundle', 'migration.rake'    
 end
 
 dep 'squawkbox.bundle' do
+
+    var.set :rails_root, "#{shell('pwd')}/Squawkbox"
+    var.set :home_root, "#{shell('pwd')}"
+
   requires 'squawkbox.git', 'Gemfile', 'bundler.gem'
   requires_when_unmet Dep('current dir:packages')
   met? { in_dir(var(:rails_root)) { shell 'bundle check', :log => true } }
@@ -29,6 +31,10 @@ dep 'Gemfile' do
 end
 
 dep 'squawkbox.git' do
+
+    var.set :rails_root, "#{shell('pwd')}/Squawkbox"
+    var.set :home_root, "#{shell('pwd')}"
+
     requires_when_unmet Dep('current dir:packages')
     before {
         shell("rm -rf #{var(:rails_root)}")
