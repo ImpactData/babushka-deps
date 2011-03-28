@@ -4,14 +4,18 @@ meta :rake do
   end
 end
 
+def set_paths 
+    var(:home_root, :default => "#{shell('pwd')}")
+    var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
+end
+
 dep 'squawkbox.setup' do
     requires 'squawkbox.bundle', 'migration.rake'    
 end
 
 dep 'squawkbox.bundle' do
 
-   var(:home_root, :default => "#{shell('pwd')}")
-    var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
+  set_paths()
 
   requires 'squawkbox.git', 'Gemfile'
   requires_when_unmet Dep('current dir:packages')
@@ -32,8 +36,7 @@ end
 
 dep 'squawkbox.git' do
 
-    var(:home_root, :default => "#{shell('pwd')}")
-    var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
+    set_paths()
     
     requires_when_unmet Dep('current dir:packages')
         
@@ -53,6 +56,15 @@ dep 'squawkbox.git' do
 end
 
 dep 'migration.rake' do
+
+    set_paths()
+
+    before {
+        in_dir("#{var(:rails_root)}/config"){
+            settings = YAML::load_file('database.yml')
+            settings["development"]     
+        }
+    }
     meet {
         in_dir(var(:rails_root)){
             rake 'db:create'
