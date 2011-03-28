@@ -1,6 +1,6 @@
 
 dep 'mongo.aptget' do
-    meet{ aptget('mongodb')['--fix-missing']}
+    meet{ aptget('mongodb')}
     met?{ shell('mongo --version') =~ /.*MongoDB.*/ }
     after{
         aptget('mongodb')['--fix-missing']

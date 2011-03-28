@@ -4,40 +4,64 @@ meta :rake do
   end
 end
 
-meta :bundle do
-  def bundle args
-    shell "bundle #{args}", :log => args['install']
-  end
-end 
-
 dep 'squawkbox.setup' do
-    requires 'squawkbox.bundle'    
+    var.set :rails_root, "#{shell('pwd')}/Squawkbox"
+    var.set :home_root, "#{shell('pwd')}"
+    requires 'squawkbox.bundle', 'migration.rake'    
 end
 
 dep 'squawkbox.bundle' do
-    requires 'squawkbox.git'
-    meet {
-        bundle("install")
-    }
-    met? {
-        false
-    }
+  requires 'squawkbox.git', 'Gemfile', 'bundler.gem'
+  requires_when_unmet Dep('current dir:packages')
+  met? { in_dir(var(:rails_root)) { shell 'bundle check', :log => true } }
+  meet { in_dir(var(:rails_root)) {
+    install_args = var(:rails_env) != 'production' ? '' : "--deployment --without 'development test'"
+    unless shell("bundle install #{install_args}", :log => true)
+      confirm("Try a `bundle update`") {
+        shell 'bundle update', :log => true
+      }
+    end
+  } }
+end
+
+dep 'Gemfile' do
+  met? { (var(:rails_root) / 'Gemfile').exists? }
 end
 
 dep 'squawkbox.git' do
+    requires_when_unmet Dep('current dir:packages')
     before {
-        shell("cd ~")
-        shell("rm -rf Squawkbox")
+        shell("rm -rf #{var(:rails_root)}")
     }    
     meet {
-        git("clone git@github.com:ImpactData/Squawkbox.git")
+        in_dir(var(:home_root)){
+            git("clone git@github.com:ImpactData/Squawkbox.git")
+        }
     }
     met? {
-        shell("ls Squawkbox") == "Squawkbox"    
+        shell("ls #{var(:rails_root)}") != nil    
     }
     after {
-        shell("cd Squawkbox")
-        git("checkout development")
+        in_dir(var(:rails_root)){
+            git("checkout development")
+        }
     } 
 end
+
+dep 'migration.rake' do
+    meet {
+        in_dir(var(:rails_root)){
+            rake 'db:create'
+            rake 'db:create test'
+            rake 'db:migrate'
+            rake 'db:migrate test'
+            rake 'db:seed'
+            rake 'db:seed test'
+        }
+    }
+end
+
+
+
+
 
