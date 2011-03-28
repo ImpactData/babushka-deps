@@ -1,6 +1,6 @@
 meta :git do
   def git args
-    shell "git #{args}", :log => args['install']
+    login_shell "git #{args}", :log => args['install']
   end
 end
 

@@ -35,11 +35,8 @@ dep 'squawkbox.git' do
     var(:home_root, :default => "#{shell('pwd')}")
     var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
     
-
     requires_when_unmet Dep('current dir:packages')
-    before {
-        shell("rm -rf #{var(:rails_root)}")
-    }    
+        
     meet {
         in_dir(var(:home_root)){
             git("clone git@github.com:ImpactData/Squawkbox.git")
