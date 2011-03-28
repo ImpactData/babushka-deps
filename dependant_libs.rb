@@ -82,3 +82,6 @@ dep 'libmagickwanddev.aptget' do
     meet{ aptget('libmagickwand-dev')}
     #met?{ aptget('libmagickwand-dev') =~ /.*libmagickwand-dev is already the newest version.*/ }
 end 
+
+
+

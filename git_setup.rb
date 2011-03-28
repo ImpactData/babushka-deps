@@ -5,7 +5,7 @@ meta :git do
 end
 
 dep 'setup.git' do
-    requires 'username.git', 'email.git'    
+    requires 'username.git', 'email.git', 'zsh.aptget'    
 end
 
 dep 'username.git' do
@@ -25,4 +25,11 @@ dep 'email.git' do
         git("config --get user.email") == "#{var :git_email}"
     }    
 end
+
+dep 'zsh.aptget' do
+    meet {
+         aptget('install zsh')
+    }    
+end
+
 

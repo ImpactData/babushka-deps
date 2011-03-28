@@ -10,6 +10,8 @@ bash -c "`wget -O - babushka.me/up`"
 babushka 'core:curl.managed'
 #git
 babushka 'core:git'
+babushka 'setup.git'
+
 babushka source -a impactdata git://github.com/MarkMagnus/squawk_babushka_dep.git
 
 #ruby-dev libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev
@@ -21,8 +23,7 @@ babushka 'impactdata:1.8.7.ee.rvm'
 #Rails 2.3.9 + gems[bundler, heroku, thin, postgres, pgadmin3, mongodb]
 babushka 'impactdata:2.3.9.rails'
 
-#zsh # suggested - oh-my-zsh has useful stuff (aliases, colouring, etc.) for git 
-
+babushka 'squawkbox.setup'
 #then:
 #git config --global user.name "Your GitHub ID"
 #git config --global user.email "Your GitHub/Heroku email"

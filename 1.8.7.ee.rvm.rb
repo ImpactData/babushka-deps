@@ -20,7 +20,7 @@ end
 #required yacc parser
 dep 'bison.managed' do
     meet {
-        sudo('apt-get install bison')
+        aptget('install bison')
     }
 end
 

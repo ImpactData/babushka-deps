@@ -10,6 +10,10 @@ meta :bundle do
   end
 end 
 
+dep 'squawkbox.setup' do
+    requires 'squawkbox.bundle'    
+end
+
 dep 'squawkbox.bundle' do
     requires 'squawkbox.git'
     meet {
@@ -21,7 +25,6 @@ dep 'squawkbox.bundle' do
 end
 
 dep 'squawkbox.git' do
-    requires 'setup.git'
     before {
         shell("cd ~")
         shell("rm -rf Squawkbox")
