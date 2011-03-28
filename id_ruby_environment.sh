@@ -12,23 +12,16 @@ babushka 'core:curl.managed'
 babushka 'core:git'
 babushka source -a impactdata git://github.com/MarkMagnus/squawk_babushka_dep.git
 
+#ruby-dev libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev
+sudo babushka '2.3.9.rails.nativelibs'
+
 #Install Ruby Enterprise 1.8.7 (suggest using RVM)
 babushka 'impactdata:1.8.7.ee.rvm'
 
-#Rails 2.3.9
-#gems:
-#bundler
-#heroku
-#thin # suggested - faster Rack server
-#postgres
-#pgadmin3
-babushka 'impactdata:2.3.9.rails.rb'
+#Rails 2.3.9 + gems[bundler, heroku, thin, postgres, pgadmin3, mongodb]
+babushka 'impactdata:2.3.9.rails'
 
-#zsh # suggested - oh-my-zsh has useful stuff (aliases, colouring, etc.) for git
-#mongodb  
-
-#ruby-dev libxml2 libxml2-dev libsasl2-dev libxslt-dev libxml2-dev libpq-dev imagemagick libmagickcore-dev libmagickwand-dev # Needed to build certain gems
-
+#zsh # suggested - oh-my-zsh has useful stuff (aliases, colouring, etc.) for git 
 
 #then:
 #git config --global user.name "Your GitHub ID"
