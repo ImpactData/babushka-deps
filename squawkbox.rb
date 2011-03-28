@@ -32,8 +32,9 @@ end
 
 dep 'squawkbox.git' do
 
-    var(:rails_root, :default => "#{shell('pwd')}/Squawkbox")
     var(:home_root, :default => "#{shell('pwd')}")
+    var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
+    
 
     requires_when_unmet Dep('current dir:packages')
     before {
