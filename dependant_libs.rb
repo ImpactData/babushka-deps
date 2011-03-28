@@ -3,7 +3,7 @@ dep '2.3.9.rails.nativelibs' do
 end
 
 dep 'rubydev.managed' do
-    install{ via :apt, 'ruby-dev'}
+    installs{ via :apt, 'ruby-dev'}
     provides []
 end 
 
@@ -13,7 +13,7 @@ end
 #end 
 
 dep 'libxml2dev.managed' do
-    install { via :apt ,'libxml2-dev'}
+    installs { via :apt ,'libxml2-dev'}
     provides []
 end
 
@@ -23,7 +23,7 @@ end
 #end 
 
 dep 'libsasl2dev.managed' do
-    install { via :apt, 'libsasl2-dev' }
+    installs { via :apt, 'libsasl2-dev' }
     provides []
 end 
 
@@ -33,7 +33,7 @@ end
 #end 
 
 dep 'libxsltdev.managed' do
-    install { via :apt, 'libxslt-dev' }
+    installs { via :apt, 'libxslt-dev' }
     provides []
 end 
 
@@ -43,7 +43,7 @@ end
 #end 
 
 dep 'libxml2dev.managed' do
-    install { via :apt, 'libxml2-dev' }
+    installs { via :apt, 'libxml2-dev' }
     provides []
 end 
 
@@ -53,7 +53,7 @@ end
 #end 
 
 dep 'imagemagick.managed' do
-    install { via :apt, 'imagemagick' }
+    installs { via :apt, 'imagemagick' }
     provides []
 end 
 
@@ -63,7 +63,7 @@ end
 #end 
 
 dep 'libmagickcoredev.managed' do
-    install { via :apt, 'libmagickcore-dev' }
+    installs { via :apt, 'libmagickcore-dev' }
     provides []
 end 
 
