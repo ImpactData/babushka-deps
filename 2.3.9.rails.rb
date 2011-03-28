@@ -1,6 +1,6 @@
 meta :gem do
   def gem args
-    shell "gem #{args}", :log => args['install']
+    sudo "gem #{args}", :log => args['install']
   end
 end
 
@@ -26,8 +26,14 @@ dep 'postgres.gem' do
 end
 
 dep 'bundler.gem' do
+    requires 'rubygems_update.gem'
     met? { login_shell('gem list bundler')['bundler (0.9.7)'] }
     meet { gem('install bundler --VERSION=0.9.7') }
+end
+
+dep 'rubygems_update.gem' do
+    met? { login_shell('gem list rubygems-update')['rubygems-update'] }
+    meet { gem('install rubygems-update') }
 end
 
 dep 'heroku.gem' do
