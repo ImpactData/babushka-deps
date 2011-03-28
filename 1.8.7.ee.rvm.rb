@@ -1,27 +1,29 @@
 #hacked from benhoskings:1.9.2.rvm creds
 meta :rvm do
   def rvm args
-    shell "~/.rvm/bin/rvm #{args}", :log => args['install']
+    shell "sudo -u #{shell('whoami')} ~/.rvm/bin/rvm #{args}", :log => args['install']
   end
 end
 
 dep '1.8.7.ee.rvm' do
   requires '1.8.7.ee installed.rvm'
   met? { login_shell('ruby --version')['ruby 1.8.7'] }
-  meet { rvm('rvm use ree-1.8.7-head') }
+  meet { rvm('use ree-1.8.7-head') }
 end
 
 dep '1.8.7.ee installed.rvm' do
   requires ['rvm', 'bison.managed']
   met? { rvm('list')['ree-1.8.7-head'] }
-  meet { log("rvm install ree-1.8.7-head") { rvm 'install ree-1.8.7-head'} }
+  meet { 
+        log("installing ree_dependencies") { rvm('package install ree_dependencies')}
+        log("installing ree-1.8.7-head") { rvm('install ree-1.8.7-head') } 
+  }
 end
 
 #required yacc parser
 dep 'bison.managed' do
-    meet {
-        aptget('install bison')
-    }
+    meet { aptget('install bison') }
+    met? { aptget('bison') =~ /.*bison is already the newest version.*/ }
 end
 
 dep 'rvm' do

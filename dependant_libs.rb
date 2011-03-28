@@ -1,6 +1,6 @@
 dep '2.3.9.rails.nativelibs' do
     #requires 'rubydev.managed', 'libxml2dev.managed', 'libsasl2dev.managed' ,'libxsltdev.managed', 'libxml2dev.managed', 'imagemagick.managed', 'libmagickcoredev.managed', 'libmagickwanddev.managed'
-    requires 'rubydev.aptget', 'libxml2dev.aptget', 'libsasl2dev.aptget' ,'libxsltdev.aptget', 'libxml2dev.aptget', 'imagemagick.aptget', 'libmagickcoredev.aptget', 'libmagickwanddev.aptget'
+    requires 'rubydev.aptget', 'libxml2dev.aptget', 'libsasl2dev.aptget' ,'libxsltdev.aptget', 'libxml2dev.aptget', 'imagemagick.aptget', 'libmagickcoredev.aptget', 'libmagickwanddev.aptget', 'libreadline_ruby.aptget'
 end
 
 #dep 'rubydev.managed' do
@@ -10,7 +10,7 @@ end
 
 dep 'rubydev.aptget' do
     meet{ aptget('ruby-dev')}
-    #met?{ aptget('ruby-dev') =~ /.*ruby-dev is already the newest version.*/ }
+    met?{ aptget('ruby-dev') =~ /.*ruby-dev is already the newest version.*/ }
 end 
 
 #dep 'libxml2dev.managed' do
@@ -20,7 +20,7 @@ end
 
 dep 'libxml2dev.aptget' do
     meet{ aptget('libxml2-dev')}
-    #met?{ aptget('libxml2-dev') =~ /.*libxml2-dev is already the newest version.*/ }
+    met?{ aptget('libxml2-dev') =~ /.*libxml2-dev is already the newest version.*/ }
 end 
 
 #dep 'libsasl2dev.managed' do
@@ -30,7 +30,7 @@ end
 
 dep 'libsasl2dev.aptget' do
     meet{ aptget('libsasl2-dev')}
-    #met?{ aptget('libsasl2-dev') =~ /.*libsasl2-dev is already the newest version.*/ }
+    met?{ aptget('libsasl2-dev') =~ /.*libsasl2-dev is already the newest version.*/ }
 end 
 
 #dep 'libxsltdev.managed' do
@@ -40,7 +40,7 @@ end
 
 dep 'libxsltdev.aptget' do
     meet{ aptget('libxslt-dev')}
-    #met?{ aptget('libxslt-dev') =~ /.*libxslt1-dev is already the newest version.*/ }
+    met?{ aptget('libxslt-dev') =~ /.*libxslt1-dev is already the newest version.*/ }
 end 
 
 #dep 'libxml2dev.managed' do
@@ -50,7 +50,7 @@ end
 
 dep 'libxml2dev.aptget' do
     meet{ aptget('libxml2-dev')}
-    #met?{ aptget('libxml2-dev') =~ /.*libxml2-dev is already the newest version.*/ }
+    met?{ aptget('libxml2-dev') =~ /.*libxml2-dev is already the newest version.*/ }
 end 
 
 #dep 'imagemagick.managed' do
@@ -60,7 +60,7 @@ end
 
 dep 'imagemagick.aptget' do
     meet{ aptget('imagemagick')}
-    #met?{ aptget('imagemagick') =~ /.*imagemagick is already the newest version.*/ }
+    met?{ aptget('imagemagick') =~ /.*imagemagick is already the newest version.*/ }
 end 
 
 #dep 'libmagickcoredev.managed' do
@@ -70,7 +70,7 @@ end
 
 dep 'libmagickcoredev.aptget' do
     meet{ aptget('libmagickcore-dev')}
-    #met?{ aptget('libmagickcore-dev') =~ /.*libmagickcore-dev is already the newest version.*/ }
+    met?{ aptget('libmagickcore-dev') =~ /.*libmagickcore-dev is already the newest version.*/ }
 end 
 
 #dep 'libmagickwanddev.managed' do
@@ -80,8 +80,16 @@ end
 
 dep 'libmagickwanddev.aptget' do
     meet{ aptget('libmagickwand-dev')}
-    #met?{ aptget('libmagickwand-dev') =~ /.*libmagickwand-dev is already the newest version.*/ }
+    met?{ aptget('libmagickwand-dev') =~ /.*libmagickwand-dev is already the newest version.*/ }
 end 
 
+dep 'libreadline_ruby.aptget' do
+    meet { aptget('libreadline-ruby')}
+    met?{ aptget('libreadline-ruby') =~ /.*libreadline-ruby is already the newest version.*/ }
+end
 
+dep 'libreadline5dev.aptget' do
+    meet { aptget('libreadline5-dev')}
+    met?{ aptget('libreadline5-dev') =~ /.*libreadline5-dev is already the newest version.*/ }
+end
 

@@ -95,6 +95,11 @@ dep 'migration.rake' do
             rake 'db:seed test'
         }
     }
+
+    met?{
+        
+    }
+
 end
 
 
