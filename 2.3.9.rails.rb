@@ -10,7 +10,7 @@ meta :aptget do
   end
 end
 
-dep 'impactdata:2.3.9.rails' do
+dep '2.3.9.rails' do
     requires '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem', 'mongo.aptget' 
 end
 
