@@ -63,8 +63,8 @@ dep 'set_credentials' do
         in_dir("#{var(:rails_root)}/config"){
             settings = YAML::load(File.open('database.yml'))
             
-            settings["development"]["username"] = var :postgres_username, :default => 'torsion'
-            settings["development"]["password"] = var :postgres_password, :default => 'torsion'
+            settings["development"]["username"] = var :postgres_username
+            settings["development"]["password"] = var :postgres_password
 
             File.open('database.yml', 'w+') { |out|
                 YAML::dump(settings, out)
