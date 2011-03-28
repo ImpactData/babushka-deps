@@ -10,8 +10,8 @@ end
 
 dep 'squawkbox.bundle' do
 
-    var.set :rails_root, "#{shell('pwd')}/Squawkbox"
-    var.set :home_root, "#{shell('pwd')}"
+    var(:rails_root, :default => "#{shell('pwd')}/Squawkbox")
+    var(:home_root, :default => "#{shell('pwd')}")
 
   requires 'squawkbox.git', 'Gemfile', 'bundler.gem'
   requires_when_unmet Dep('current dir:packages')
@@ -32,8 +32,8 @@ end
 
 dep 'squawkbox.git' do
 
-    var.set :rails_root, "#{shell('pwd')}/Squawkbox"
-    var.set :home_root, "#{shell('pwd')}"
+    var(:rails_root, :default => "#{shell('pwd')}/Squawkbox")
+    var(:home_root, :default => "#{shell('pwd')}")
 
     requires_when_unmet Dep('current dir:packages')
     before {
