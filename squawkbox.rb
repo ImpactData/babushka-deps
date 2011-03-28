@@ -10,14 +10,14 @@ end
 
 dep 'squawkbox.bundle' do
 
-    var(:rails_root, :default => "#{shell('pwd')}/Squawkbox")
-    var(:home_root, :default => "#{shell('pwd')}")
+   var(:home_root, :default => "#{shell('pwd')}")
+    var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
 
-  requires 'squawkbox.git', 'Gemfile', 'bundler.gem'
+  requires 'squawkbox.git', 'Gemfile'
   requires_when_unmet Dep('current dir:packages')
   met? { in_dir(var(:rails_root)) { shell 'bundle check', :log => true } }
   meet { in_dir(var(:rails_root)) {
-    install_args = var(:rails_env) != 'production' ? '' : "--deployment --without 'development test'"
+    install_args = var(:rails_env, :default => "deployment") != 'production' ? '' : "--deployment --without 'development test'"
     unless shell("bundle install #{install_args}", :log => true)
       confirm("Try a `bundle update`") {
         shell 'bundle update', :log => true
