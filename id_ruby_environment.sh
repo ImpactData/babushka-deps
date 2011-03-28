@@ -23,7 +23,6 @@ babushka 'impactdata:1.8.7.ee.rvm'
 #Rails 2.3.9 + gems[bundler, heroku, thin, postgres, pgadmin3, mongodb]
 babushka 'impactdata:2.3.9.rails'
 
-babushka 'squawkbox.setup'
 #then:
 #git config --global user.name "Your GitHub ID"
 #git config --global user.email "Your GitHub/Heroku email"
@@ -41,7 +40,7 @@ babushka 'squawkbox.setup'
 #rake db:migrate test
 #rake db:seed
 #rake db:seed test
-
+babushka 'squawkbox.setup'
 
 
 

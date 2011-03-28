@@ -55,16 +55,29 @@ dep 'squawkbox.git' do
     } 
 end
 
-dep 'migration.rake' do
+dep 'set_credentials' do
 
     set_paths()
 
-    before {
+    meet {
         in_dir("#{var(:rails_root)}/config"){
-            settings = YAML::load_file('database.yml')
-            settings["development"]     
+            settings = YAML::load(File.open('database.yml'))
+            
+            settings["development"]["username"] = var :postgres_username, :default => 'torsion'
+            settings["development"]["password"] = var :postgres_password, :default => 'torsion'
+
+            File.open('database.yml', 'w+') { |out|
+                YAML::dump(settings, out)
+            }
         }
     }
+
+end
+
+dep 'migration.rake' do
+
+    requires 'set_credentials'
+
     meet {
         in_dir(var(:rails_root)){
             rake 'db:create'
