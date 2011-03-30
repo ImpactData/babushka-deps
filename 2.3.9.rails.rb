@@ -15,7 +15,7 @@ dep '2.3.9.rails' do
 end
 
 dep '2.3.9.rails.gem' do
-    met? { gem('list rails')['rails (2.3.9)'] }
+    met? { gem('list rails') =~ /.*rails \(2\.3\.9\).*/ }
     meet { gem('install rails --VERSION=2.3.9 --include-dependencies') }
 end 
 
