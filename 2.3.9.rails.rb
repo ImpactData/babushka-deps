@@ -1,6 +1,6 @@
 meta :gem do
   def gem args
-    rvm('use ree-1.8.7-head')
+    shell 'rvm use ree-1.8.7-head'
     sudo "gem #{args}", :log => args['install']
   end
 end
