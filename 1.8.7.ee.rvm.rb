@@ -5,6 +5,16 @@ meta :rvm do
   end
 end
 
+dep 'append_bashrc' do
+	met? {
+		shell("source ~/.bashrc")		
+		login_shell('rvm list')['ree-1.8.7-head']
+	} 
+	meet {
+		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> .bashrc")
+	}
+end
+
 dep '1.8.7.ee.rvm' do
   requires '1.8.7.ee installed.rvm'
   met? { login_shell('ruby --version')['ruby 1.8.7'] }
