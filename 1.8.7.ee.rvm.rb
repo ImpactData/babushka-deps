@@ -6,13 +6,11 @@ meta :rvm do
 end
 
 dep 'append_bashrc' do
-	met? {
-		shell("source ~/.bashrc")		
-		shell('rvm list') =~ /.*ree-1.8.7-head.*/
+	met? {		
+		shell('grep rvm/scripts ~/.bashrc') =~ /.*rvm.scripts.*/
 	} 
 	meet {
 		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> .bashrc")
-    shell("source ~/.bashrc")	
 	}
 end
 
