@@ -12,6 +12,7 @@ dep 'append_bashrc' do
 	} 
 	meet {
 		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> .bashrc")
+    shell("source ~/.bashrc")	
 	}
 end
 
