@@ -1,6 +1,6 @@
 meta :gem do
   def gem args
-    sudo ".rvm/rubies/ree-1.8.7-head/bin/gem #{args}", :log => args['install']
+    sudo "~/.rvm/rubies/ree-1.8.7-head/bin/gem #{args}", :log => args['install']
   end
 end
 
