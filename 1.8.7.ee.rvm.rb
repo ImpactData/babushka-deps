@@ -12,7 +12,7 @@ dep '1.8.7.ee.rvm' do
 end
 
 dep '1.8.7.ee installed.rvm' do
-  requires ['rvm', 'bison.managed']
+  requires ['rvm', 'bison.aptget']
   met? { rvm('list')['ree-1.8.7-head'] }
   meet { 
         log("installing ree_dependencies") { rvm('package install ree_dependencies')}
@@ -21,7 +21,7 @@ dep '1.8.7.ee installed.rvm' do
 end
 
 #required yacc parser
-dep 'bison.managed' do
+dep 'bison.aptget' do
     meet { aptget('install bison') }
     met? { aptget('bison') =~ /.*bison is already the newest version.*/ }
 end
