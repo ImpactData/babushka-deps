@@ -1,5 +1,6 @@
 meta :gem do
   def gem args
+    rvm('use ree-1.8.7-head')
     sudo "gem #{args}", :log => args['install']
   end
 end
@@ -15,87 +16,34 @@ dep '2.3.9.rails' do
 end
 
 dep '2.3.9.rails.gem' do
-    requires_when_unmet Dep('current dir:packages')   
-    set_paths() 
-    met? { 
-        in_dir(var(:rails_root)) {
-            gem('list rails')['rails (2.3.9)'] 
-        }
-    }
-    meet { 
-        in_dir(var(:rails_root)) {
-            gem('install rails --VERSION=2.3.9 --include-dependencies') 
-        }
-    }
+    met? { gem('list rails')['rails (2.3.9)'] }
+    meet { gem('install rails --VERSION=2.3.9 --include-dependencies') }
 end 
 
 dep 'postgres.gem' do
-    requires_when_unmet Dep('current dir:packages')    
-    set_paths()
     requires 'postgres.access'
     met? { gem('list postgres')['postgres'] }
     meet { gem('install postgres') }
 end
 
 dep 'bundler.gem' do
-    requires_when_unmet Dep('current dir:packages')    
-    set_paths()    
     requires 'rubygems_update.gem'
-    met? { 
-        in_dir(var(:rails_root)) {
-            gem('list bundler')['bundler'] 
-        }
-    }
-    meet { 
-        in_dir(var(:rails_root)) {
-            gem('install bundler') 
-        }
-    }
+    met? { gem('list bundler')['bundler'] }
+    meet { gem('install bundler') }
 end
 
 dep 'rubygems_update.gem' do
-    requires_when_unmet Dep('current dir:packages')    
-    set_paths()
-    met? { 
-        in_dir(var(:rails_root)) {
-            gem('list rubygems-update')['rubygems-update'] 
-        }
-    }
-    meet { 
-        in_dir(var(:rails_root)) {
-            gem('install rubygems-update') 
-        }
-    }
+    met? { gem('list rubygems-update')['rubygems-update'] }
+    meet { gem('install rubygems-update') }
 end
 
 dep 'heroku.gem' do
-    requires_when_unmet Dep('current dir:packages')    
-    set_paths()
-    met? {
-        in_dir(var(:rails_root)) { 
-            gem('list heroku')['heroku'] 
-        }
-    }
-    meet { 
-        in_dir(var(:rails_root)) {
-            gem('install heroku') 
-        }
-    }
+    met? { gem('list heroku')['heroku'] }
+    meet { gem('install heroku') }
 end
 
 dep 'thin.gem' do
-    requires_when_unmet Dep('current dir:packages')    
-    set_paths()
-    met? { 
-        in_dir(var(:rails_root)) {
-            gem('list thin')['thin'] 
-        }
-    }   
-        
-    meet { 
-        in_dir(var(:rails_root)) {
-            gem('install thin') 
-        }
-    }
+    met? { gem('list thin')['thin'] }   
+    meet { gem('install thin') }
 end
 
