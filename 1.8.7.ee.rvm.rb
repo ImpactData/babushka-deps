@@ -10,7 +10,7 @@ dep 'append_bashrc' do
 		shell('grep rvm/scripts ~/.bashrc') =~ /.*rvm.scripts.*/
 	} 
 	meet {
-		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> .bashrc")
+		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> ~/.bashrc")
 		log "Will need to restart bash terminal"
 		log "Run $source ~/.bashrc"
 		log "For this to take effect"
