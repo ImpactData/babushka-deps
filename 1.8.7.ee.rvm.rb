@@ -17,7 +17,7 @@ dep 'append_bashrc' do
 end
 
 dep '1.8.7.ee.rvm' do
-  requires '1.8.7.ee installed.rvm'
+  requires '1.8.7.ee installed.rvm', 'append_bashrc'
   met? { login_shell('ruby --version')['ruby 1.8.7'] }
   meet { rvm('use ree-1.8.7-head') }
 end
