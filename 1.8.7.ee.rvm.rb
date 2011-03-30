@@ -8,7 +8,7 @@ end
 dep 'append_bashrc' do
 	met? {
 		shell("source ~/.bashrc")		
-		login_shell('rvm list')['ree-1.8.7-head']
+		shell('rvm list') =~ /.*ree-1.8.7-head.*/
 	} 
 	meet {
 		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> .bashrc")
