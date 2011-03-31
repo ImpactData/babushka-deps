@@ -20,7 +20,7 @@ dep 'rvmrc' do
 		shell("ls ~/Squawkbox/.rvmrc") =~ /.*\.rvmrc.*/
 	}
     meet {
-		shell("echo \"ree-1.8.7-head\" > ~/Squawkbox/.rvmrc")
+		shell("echo \"rvm use ree-1.8.7-head\" > ~/Squawkbox/.rvmrc")
 	}
 end
 
