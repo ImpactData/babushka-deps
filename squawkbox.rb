@@ -9,15 +9,32 @@ def set_paths
     var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
 end
 
-dep 'squawkbox.setup' do
-    requires 'squawkbox.bundle', 'migration.rake'    
+dep 'squawkbox_setup' do
+    requires 'squawkbox_bundle', 'rvmrc'    
+    log "Upon successfully installation of sqauwkbox"
+	log "cd Squawkbox"
+    log "rake db:create"
+    log "rake db:create test"
+    log "rake db:migrate"
+    log "rake db:migrate test"
+    log "rake db:seed"
+    log "rake db:seed test"	
 end
 
-dep 'squawkbox.bundle' do
+dep 'rvmrc' do 
+	met? {
+		shell("ls ~/Squawkbox/.rvmrc") =~ /.*\.rvmrc.*/
+	}
+    meet {
+		shell("echo \"ree-1.8.7-head\" > ~/Squawkbox/.rvmrc")
+	}
+end
+
+dep 'squawkbox_bundle' do
 
   set_paths()
 
-  requires 'squawkbox.git', 'Gemfile'
+  requires 'squawkbox_git', 'Gemfile'
   requires_when_unmet Dep('current dir:packages')
   met? { in_dir(var(:rails_root)) { shell 'bundle check', :log => true } }
   meet { in_dir(var(:rails_root)) {
@@ -34,7 +51,7 @@ dep 'Gemfile' do
   met? { (var(:rails_root) / 'Gemfile').exists? }
 end
 
-dep 'squawkbox.git' do
+dep 'squawkbox_git' do
 
     set_paths()
     
@@ -55,52 +72,8 @@ dep 'squawkbox.git' do
     } 
 end
 
-dep 'set_credentials' do
 
-    set_paths()
 
-    meet {
-        in_dir("#{var(:rails_root)}/config"){
-            settings = YAML::load(File.open('database.yml'))
-            
-            settings["development"]["username"] = var(:postgres_username)
-            settings["development"]["password"] = var(:postgres_password)
-
-            File.open('database.yml', 'w+') { |out|
-                YAML::dump(settings, out)
-            }
-        }
-    }
-
-    met? {
-        in_dir("#{var(:rails_root)}/config"){
-            settings = YAML::load(File.open('database.yml'))            
-            settings["development"]["username"] == var(:postgres_username) and settings["development"]["password"] == var(:postgres_password)
-        }
-    }
-
-end
-
-dep 'migration.rake' do
-
-    requires 'set_credentials'
-
-    meet {
-        in_dir(var(:rails_root)){
-            rake 'db:create'
-            rake 'db:create test'
-            rake 'db:migrate'
-            rake 'db:migrate test'
-            rake 'db:seed'
-            rake 'db:seed test'
-        }
-    }
-
-    met?{
-        
-    }
-
-end
 
 
 
