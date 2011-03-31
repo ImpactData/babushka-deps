@@ -1,6 +1,6 @@
 meta :gem do
   def gem args
-    sudo "~/.rvm/rubies/ree-1.8.7-head/bin/gem #{args}", :log => args['install']
+    sudo "~/.rvm/rubies/ree-1.8.7-2011.03/bin/gem #{args}", :log => args['install']
   end
 end
 
@@ -31,7 +31,7 @@ dep 'bundler.gem' do
     meet { 
 	log "bundler is not a happy camper"
 	log "you may have to do this manually"
-	shell('rvm use ree-1.8.7-head')
+	shell('rvm use ree-1.8.7-2011.03')
 	shell('gem install bundler') 
     }
 end
