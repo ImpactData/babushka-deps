@@ -41,7 +41,7 @@ dep 'squawkbox_bundle' do
   } }
 end
 
-dep 'Gemfile' docat
+dep 'Gemfile' do
   met? { (var(:rails_root) / 'Gemfile').exists? }
 end
 
