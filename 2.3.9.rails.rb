@@ -31,6 +31,8 @@ dep 'bundler.gem' do
     meet { 
 	log "bundler is not a happy camper"
 	log "you may have to do this manually"
+	log "rvm use ree-1.8.7-2011.03"
+	log "gem install bundler"
 	shell('rvm use ree-1.8.7-2011.03')
 	shell('gem install bundler') 
     }
