@@ -30,6 +30,7 @@ dep 'bundler.gem' do
     met? { gem('list bundler')['bundler'] }
     meet { 
 	log "bundler is not a happy camper"
+	log "you may have to do this manually"
 	shell('rvm use ree-1.8.7-head')
 	shell('gem install bundler') 
     }
