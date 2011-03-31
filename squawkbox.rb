@@ -20,7 +20,7 @@ dep 'rvmrc' do
 		shell("ls ~/Squawkbox/.rvmrc") =~ /.*\.rvmrc.*/
 	}
     meet {
-		shell("echo \"rvm use ree-1.8.7-head\" > ~/Squawkbox/.rvmrc")
+		shell("echo \"rvm use ree-1.8.7-2011.03\" > ~/Squawkbox/.rvmrc")
 	}
 end
 
@@ -33,13 +33,13 @@ dep 'squawkbox_bundle' do
 
  	met? { 
 		in_dir(var(:rails_root)) { 
-			shell('rvm use ree-1.8.7-head')
+			shell('rvm use ree-1.8.7-2011.03')
 			shell 'bundle check', :log => true 
 		} 
 	}
   	meet { 
 		in_dir(var(:rails_root)) {
-			shell('rvm use ree-1.8.7-head')
+			shell('rvm use ree-1.8.7-2011.03')
 			install_args = var(:rails_env, :default => "development") != 'production' ? '' : "--deployment --without 'development test'"
 			unless shell("bundle install #{install_args}", :log => true)
 		  		confirm("Try a `bundle update`") {

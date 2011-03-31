@@ -19,15 +19,15 @@ end
 dep '1.8.7.ee.rvm' do
   requires '1.8.7.ee installed.rvm', 'append_bashrc'
   met? { login_shell('ruby --version')['ruby 1.8.7'] }
-  meet { rvm("use #{ var :rvm_ruby_version, :default => 'ree-1.8.7-head'}") }
+  meet { rvm("use #{ var :rvm_ruby_version, :default => 'ree-1.8.7-2011.03'}") }
 end
 
 dep '1.8.7.ee installed.rvm' do
   requires ['rvm', 'bison.aptget']
-  met? { rvm('list')['ree-1.8.7-head'] }
+  met? { rvm('list')['ree-1.8.7-2011.03'] }
   meet { 
         log("installing ree_dependencies") { rvm('package install ree_dependencies')}
-        log("installing ree-1.8.7-head") { rvm('install ree-1.8.7-head') } 
+        log("installing ree-1.8.7-2011.03") { rvm('install ree-1.8.7-2011.03') } 
   }
 end
 
