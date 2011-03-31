@@ -1,9 +1,3 @@
-meta :rake do
-  def rake args
-    shell "rake #{args}", :log => args['install']
-  end
-end
-
 def set_paths 
     var(:home_root, :default => "#{shell('pwd')}")
     var(:rails_root, :default => "#{var(:home_root)}/Squawkbox")
