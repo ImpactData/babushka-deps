@@ -5,7 +5,7 @@ dep 'mongo.aptget' do
     after{
         aptget('mongodb')['--fix-missing']
 	sudo('mongod --repair')
-	sudo('service mongodb  start')
+	sudo('service mongodb start')
     }
 end 
 
