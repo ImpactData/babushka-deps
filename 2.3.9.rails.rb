@@ -28,7 +28,11 @@ end
 dep 'bundler.gem' do
     requires 'rubygems_update.gem'
     met? { gem('list bundler')['bundler'] }
-    meet { gem('install bundler') }
+    meet { 
+	log "bundler is not a happy camper"
+	shell('rvm use ree-1.8.7-head')
+	shell('gem install bundler') 
+    }
 end
 
 dep 'rubygems_update.gem' do
