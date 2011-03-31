@@ -5,14 +5,25 @@ meta :rvm do
   end
 end
 
+dep 'append_bashrc' do
+	met? {		
+		shell('grep rvm/scripts ~/.bashrc') =~ /.*rvm.scripts.*/
+	} 
+	meet {
+		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> ~/.bashrc")
+		log "Run $source ~/.bashrc"
+		log "For this to take effect"
+	}
+end
+
 dep '1.8.7.ee.rvm' do
-  requires '1.8.7.ee installed.rvm'
+  requires '1.8.7.ee installed.rvm', 'append_bashrc'
   met? { login_shell('ruby --version')['ruby 1.8.7'] }
   meet { rvm("use #{ var :rvm_ruby_version, :default => 'ree-1.8.7-head'}") }
 end
 
 dep '1.8.7.ee installed.rvm' do
-  requires ['rvm', 'bison.managed']
+  requires ['rvm', 'bison.aptget']
   met? { rvm('list')['ree-1.8.7-head'] }
   meet { 
         log("installing ree_dependencies") { rvm('package install ree_dependencies')}
@@ -21,7 +32,7 @@ dep '1.8.7.ee installed.rvm' do
 end
 
 #required yacc parser
-dep 'bison.managed' do
+dep 'bison.aptget' do
     meet { aptget('install bison') }
     met? { aptget('bison') =~ /.*bison is already the newest version.*/ }
 end

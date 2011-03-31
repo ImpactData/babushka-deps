@@ -1,5 +1,8 @@
 dep 'postgres.access' do
   requires 'pgadmin3.aptget', 'libpqdev.aptget'
+
+  log "Defualt"
+
   met? { !sudo("echo '\\du' | #{which 'psql'}", :as => 'postgres').split("\n").grep(/^\W*\b#{var :username}\b/).empty? }
   meet { 
     sudo "createuser -SdR #{var :postgres_username, :default => 'torsion'}", :as => 'postgres' 
