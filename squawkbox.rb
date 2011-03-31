@@ -41,7 +41,7 @@ dep 'squawkbox_bundle' do
   } }
 end
 
-dep 'Gemfile' do
+dep 'Gemfile' docat
   met? { (var(:rails_root) / 'Gemfile').exists? }
 end
 
@@ -55,7 +55,7 @@ dep 'squawkbox_git' do
         shell("cd #{var :home_root} && git clone git@github.com:ImpactData/Squawkbox.git")
     }
     met? {
-        shell("ls #{var(:rails_root)}") =~ nil    
+        shell("ls #{var(:rails_root)}") != nil    
     }
     after {
         in_dir(var(:rails_root)){
