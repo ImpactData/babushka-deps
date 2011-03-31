@@ -52,7 +52,7 @@ dep 'squawkbox_git' do
     requires_when_unmet Dep('current dir:packages')
         
     meet {
-        git("cd #{var :home_root} clone git@github.com:ImpactData/Squawkbox.git")
+        shell("cd #{var :home_root} && git clone git@github.com:ImpactData/Squawkbox.git")
     }
     met? {
         shell("ls #{var(:rails_root)}") =~ nil    
