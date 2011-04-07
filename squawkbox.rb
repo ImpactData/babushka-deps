@@ -7,6 +7,7 @@ dep 'squawkbox_setup' do
     requires 'squawkbox_bundle', 'rvmrc'    
     log "Upon successfully installation of sqauwkbox"
 	log "cd Squawkbox"
+    log "change host file to include; 0.0.0.0 development"
     log "rake db:create"
     log "rake db:create test"
     log "rake db:migrate"
