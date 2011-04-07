@@ -67,9 +67,7 @@ dep 'squawkbox_git' do
         shell("ls #{var(:rails_root)}") != nil    
     }
     after {
-        in_dir(var(:rails_root)){
-            git("checkout development")
-        }
+         shell("cd #{var :rails_root} && git checkout development")
     } 
 end
 
