@@ -6,7 +6,7 @@ end
 
 meta :aptget do
   def aptget args
-    sudo("apt-get install #{args}")
+    sudo("apt-get --assume-yes install #{args}")
   end
 end
 
