@@ -31,12 +31,6 @@ dep '1.8.7.ee installed.rvm' do
   }
 end
 
-#required yacc parser
-dep 'bison.aptget' do
-    meet { aptget('install bison') }
-    met? { aptget('bison') =~ /.*bison is already the newest version.*/ }
-end
-
 dep 'rvm' do
   met? { raw_which 'rvm', login_shell('which rvm') }
   meet {  

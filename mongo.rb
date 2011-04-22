@@ -1,12 +1,10 @@
-
-dep 'mongo.aptget' do
-    meet{ aptget('mongodb')}
-    met?{ shell('mongo --version') =~ /.*MongoDB.*/ }
-    after{
-        aptget('mongodb')['--fix-missing']
-	sudo('mongod --repair')
-	sudo('service mongodb start')
-    }
-end 
+dep 'mongo.start' do
+  requires 'mongo.aptget'
+  met?{ shell('mongo --version') =~ /.*MongoDB.*/ }
+  after{
+    sudo('mongod --repair')
+    sudo('service mongodb start')
+  }
+end
 
 

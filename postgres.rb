@@ -1,5 +1,5 @@
 dep 'postgres.access' do
-  requires 'pgadmin3.aptget', 'libpqdev.aptget'
+  requires 'pgadmin3.aptget', 'libpq-dev.aptget'
 
   log "Defualt"
 
@@ -12,19 +12,19 @@ dep 'postgres.access' do
 end
 
 dep 'libpqdev.aptget' do
-    requires 'postgres.aptget'
+    requires 'postgres.libs'
     meet{ aptget("libpq-dev")}
     met?{ shell('ls /usr/include/postgresql/libpq') == "libpq-fs.h" }
 end 
 
 dep 'pgadmin3.aptget' do
-    requires 'postgres.aptget'
+    requires 'postgres.libs'
     meet{ aptget("pgadmin3")}
     met?{ shell('ls /usr/bin/pgadmin3') == "/usr/bin/pgadmin3" }
 end
 
-dep 'postgres.aptget' do
-    meet { aptget("postgresql postgresql-client libpq-dev") }
+dep 'postgres.libs' do
+    requires POSTGRES_LIBS.map{|lib| "#{lib}.aptget"}
     met? { shell('psql --version') =~ /.*psql.*/  }
 end
 
