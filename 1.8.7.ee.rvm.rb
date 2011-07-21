@@ -38,9 +38,13 @@ dep 'bison.aptget' do
 end
 
 dep 'rvm' do
-  met? { raw_which 'rvm', login_shell('which rvm') }
-  meet {  
-    log_shell "Installing rvm using rvm-install-head", 'bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)'
+  met? { shell('which rvm') =~ /.*rvm.*/ }
+  meet {
+    log_shell 'Downloading install file','curl -v https://rvm.beginrescueend.com/install/rvm  -o rvm-installer'
+    log_shell "Make installer runable", 'chmod +x rvm-installer'
+    log_shell "Running installer", './rvm-installer'
+    log_shell "Edit bash profile to include rvm", 'echo \'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"\' >> ~/.bash_profile'
+    log_shell "Reload bash profile", 'source .bash_profile'
   }
 end
 

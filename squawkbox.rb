@@ -20,8 +20,8 @@ dep 'rvmrc' do
 	met? {
 		shell("ls ~/Squawkbox/.rvmrc") =~ /.*\.rvmrc.*/
 	}
-    meet {
-		shell("echo \"rvm use ree-1.8.7-2011.03\" > ~/Squawkbox/.rvmrc")
+        meet {
+		shell("echo \"rvm use ree\" > ~/Squawkbox/.rvmrc")
 	}
 end
 
@@ -29,30 +29,20 @@ dep 'squawkbox_bundle' do
 
   set_paths()
 
-  requires 'squawkbox_git', 'Gemfile'
+  requires 'squawkbox_git'
   requires_when_unmet Dep('current dir:packages')
 
  	met? { 
-		in_dir(var(:rails_root)) { 
-			shell('rvm use ree-1.8.7-2011.03')
-			shell 'bundle check', :log => true 
+        	cd(var(:rails_root)) { 
+			shell('bundle check') =~ /.*The Gemfile's dependencies are satisfied.*/ 
 		} 
 	}
   	meet { 
-		in_dir(var(:rails_root)) {
-			shell('rvm use ree-1.8.7-2011.03')
+		cd(var(:rails_root)) {
 			install_args = var(:rails_env, :default => "development") != 'production' ? '' : "--deployment --without 'development test'"
-			unless shell("bundle install #{install_args}", :log => true)
-		  		confirm("Try a `bundle update`") {
-		    		shell 'bundle update', :log => true
-		  		}
-			end
+			shell("bundle install #{install_args}")
   		}	 
 	}
-end
-
-dep 'Gemfile' do
-  met? { (var(:rails_root) / 'Gemfile').exists? }
 end
 
 dep 'squawkbox_git' do

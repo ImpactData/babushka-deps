@@ -6,11 +6,13 @@
 
 # install native ruby required by babushka
 sudo apt-get install ruby ri rdoc irb ri1.8 ruby1.8-dev libzlib-ruby zlib1g
-sudo bash -c "`wget -O - babushka.me/up`"
+# user should be a member of root group
+sudo usermod -a -G root <username>
+bash -c "`wget -O - babushka.me/up`"
 babushka source -a impactdata git://github.com/MarkMagnus/squawk_babushka_dep.git
 
+#git and curl
 babushka 'core:curl.managed'
-#git
 babushka 'core:git'
 
 #then:
@@ -25,7 +27,7 @@ babushka 'impactdata:2.3.9.rails.nativelibs'
 babushka 'impactdata:1.8.7.ee.rvm'
 
 #Rails 2.3.9 + gems[bundler, heroku, thin, postgres, pgadmin3, mongodb]
-babushka 'impactdata:2.3.9.rails'
+babushka 'impactdata:2.3.9.rails.rvm'
 
 #git clone git@github.com:ImpactData/Squawkbox.git
 #cd Squawkbox
@@ -40,7 +42,7 @@ babushka 'impactdata:2.3.9.rails'
 #rake db:migrate test
 #rake db:seed
 #rake db:seed test
-babushka 'squawkbox.setup'
+babushka 'impactdata:squawkbox.setup'
 
 
 
