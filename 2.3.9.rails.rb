@@ -40,7 +40,7 @@ dep 'bundler.gem' do
     requires 'rubygems_update.gem'
     met? { gem('list bundler')['bundler'] }
     meet { 
-	shell('gem install bundler') 
+	gem('install bundler') 
     }
 end
 
