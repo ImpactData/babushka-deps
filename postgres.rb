@@ -1,17 +1,21 @@
 dep 'postgres.access' do
-  requires 'libpqdev.aptget'
+  requires 'libpqdev.aptget', 'add_torsion_user'
 
   log "Add Default User Access"
 
-  sudo "useradd #{var :postgres_username, :default => 'torsion'}"  
   sudo "createuser -SdR #{var :postgres_username, :default => 'torsion'}", :as => 'postgres'
 
   met? { !sudo("echo '\\du' | #{which 'psql'}", :as => 'postgres').split("\n").grep(/^\W*\b#{var :postgres_username, :default => 'torsion'}\b/).empty? }
   meet { 
     sudo "psql -U postgres -c \"ALTER USER #{var :postgres_username, :default => 'torsion'} WITH PASSWORD '#{var :postgres_password, :default => 'torsion'}';\"", :as => 'postgres' 
-    sudo "psql -U postgres -c \"CREATE DATABASE #{var :postgres_username, :default => 'torsion'};", :as => 'postgres'
-    sudo "psql -U postgres -c \"GRANT ALL PRIVILEGES ON DATABASE #{var :postgres_username, :default => 'torsion'} TO '#{var :postgres_username, :default => 'torsion'}';\"", :as => 'postgres'
+    sudo "psql -U postgres -c \"CREATE DATABASE #{var :postgres_username, :default => 'torsion'};\"", :as => 'postgres'
+    sudo "psql -U postgres -c \"GRANT ALL PRIVILEGES ON DATABASE #{var :postgres_username, :default => 'torsion'} TO '#{var :postgres_username, :default => torsion}';\"", :as => 'postgres'
   }
+end
+
+dep 'add_torsion_user' do
+    meet{sudo "useradd #{var :postgres_username, :default => 'torsion'}"}
+    met?{ shell("cat /etc/passwd | grep #{var :postgres_username, :default => 'torsion'}") == "" }
 end
 
 dep 'libpqdev.aptget' do
