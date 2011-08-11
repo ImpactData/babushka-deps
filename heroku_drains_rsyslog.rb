@@ -1,4 +1,5 @@
 dep 'rsyslog.aptget' do
+    log("see http://devcenter.heroku.com/articles/logging")
     log("vi /etc/rsyslog.conf")
     log("uncomment $ModLoad imtcp")
     log("uncomment $InputTCPServerRun 514")
