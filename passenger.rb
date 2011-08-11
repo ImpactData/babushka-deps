@@ -25,11 +25,15 @@ dep 'add_passenger_brightbox_repo' do
     }
     meet{
         if shell("echo $HOME") =~ /.*root.*/ 
-            shell("sh -c `wget sh -c 'wget -q -O - http://apt.brightbox.net/release.asc | apt-key add -'`")
+            shell("wget -q -o release http://apt.brightbox.net/release.asc")
+            shell("apt-key add release")
+            shell("rm release") 
             shell('echo "deb http://apt.brightbox.net lucid main" | sudo tee --append /etc/apt/sources.list.d/brightbox.list')
             shell('apt-get update')  
         else
-            sudo("sh -c `wget sh -c 'wget -q -O - http://apt.brightbox.net/release.asc | apt-key add -'`")
+            sudo("wget -q -o release http://apt.brightbox.net/release.asc")
+            sudo("apt-key add release")
+            sudo("rm release") 
             sudo('echo "deb http://apt.brightbox.net lucid main" | sudo tee --append /etc/apt/sources.list.d/brightbox.list')
             sudo('apt-get update')
         end
