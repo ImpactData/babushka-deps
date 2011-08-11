@@ -1,12 +1,11 @@
 #!/bin/sh
 #checkout production version of squawkbox  
-rm -rf Squawkbox
-mkdir Squawkbox
-git clone git@github.com:ImpactData/Squawkbox.git ~/Squawkbox
-echo "rvm use ree" > ~/Squawkbox/.rvmrc
-cd ~/Squawkbox && git checkout production
-cd ~/Squawkbox && rvm use ree && bundle install
-chmod 777 -R ~/Squawkbox/log
-#restart all services
 sudo service nginx stop
+rm -rf /var/www/squawkbox
+mkdir /var/www/squawkbox
+git clone git@github.com:ImpactData/Squawkbox.git /var/www/squawkbox
+echo "rvm use ree" > /var/www/squawkbox/.rvmrc
+cd /var/www/squawkbox/ && git checkout production
+cd /var/www/squawkbox/ && rvm use ree && bundle install
+chmod 777 -R /var/www/squawkbox/Squawkbox/log
 sudo service nginx start
