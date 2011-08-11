@@ -1,6 +1,10 @@
 meta :gem do
   def gem args
-   shell "~/.rvm/bin/rvm use ree && ~/.rvm/rubies/ree-1.8.7-2011.03/bin/gem #{args}", :log => args['install']
+   if shell('echo $HOME') =~ /.*root.*/
+       shell "~/.rvm/bin/rvm use ree && ~/.rvm/rubies/ree-1.8.7-2011.03/bin/gem #{args}", :log => args['install']
+   else
+       shell "/usr/local/rvm/bin/rvm use ree && /usr/local/rvm/rubies/ree-1.8.7-2011.03/bin/gem #{args}", :log => args['install']
+   end
   end
 end
 
