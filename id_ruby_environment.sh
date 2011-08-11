@@ -9,7 +9,7 @@ sudo apt-get install ruby ri rdoc irb ri1.8 ruby1.8-dev libzlib-ruby zlib1g
 # user should be a member of root group
 sudo usermod -a -G root <username>
 bash -c "`wget -O - babushka.me/up`"
-babushka source -a impactdata git://github.com/MarkMagnus/squawk_babushka_dep.git
+babushka source -a impactdata git@github.com:ImpactData/babushka-deps.git
 
 #git and curl
 babushka 'core:curl.managed'
