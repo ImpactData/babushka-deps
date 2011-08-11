@@ -28,6 +28,7 @@ babushka 'impactdata:1.8.7.ee.rvm'
 
 #Rails 2.3.9 + gems[bundler, heroku, thin, postgres, pgadmin3, mongodb]
 babushka 'impactdata:2.3.9.rails.rvm'
+babushka 'impactdata:mongo.aptget'
 
 #If you want to checkout sb
 #babushka 'impactdata:squawkbox.setup'
