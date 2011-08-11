@@ -1,11 +1,6 @@
 #!/bin/sh
 #restore mongo database
 mongorestore --db torsion-production /files/mongo/app438149
-#invoke heroku backup process
-rvm use ree
-heroku pgbackups:capture --expire
-#get postgres backup files
-curl -o /files/postgresql/freshest.dump `heroku pgbackups:url --app squawkbox`
 #restore postres database
 pg_restore --verbose --clean --no-acl --no-owner --no-password -h 127.0.0.1 -U torsion -d torsion /files/postgresql/freshest.dump
 #checkout production version of squawkbox  
