@@ -1,7 +1,11 @@
 #hacked from benhoskings:1.9.2.rvm creds
 meta :rvm do
   def rvm args
-    shell "sudo -u #{shell('whoami')} ~/.rvm/bin/rvm #{args}", :log => args['install']
+    if shell('echo $HOME') =~ /.*root.*/
+        shell "/usr/local/rvm/bin/rvm #{args}", :log => args['install']
+    else
+        shell "sudo -u #{shell('whoami')} ~/.rvm/bin/rvm #{args}", :log => args['install']
+    end
   end
 end
 
