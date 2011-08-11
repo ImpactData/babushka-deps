@@ -9,11 +9,8 @@ dep 'squawkbox_setup' do
 	log "cd Squawkbox"
     log "change host file to include; 0.0.0.0 development"
     log "rake db:create"
-    log "rake db:create test"
     log "rake db:migrate"
-    log "rake db:migrate test"
     log "rake db:seed"
-    log "rake db:seed test"	
 end
 
 dep 'rvmrc' do 
