@@ -43,7 +43,11 @@ dep 'rvm' do
     log_shell 'Downloading install file','curl -v https://rvm.beginrescueend.com/install/rvm  -o rvm-installer'
     log_shell "Make installer runable", 'chmod +x rvm-installer'
     log_shell "Running installer", './rvm-installer'
-    log_shell "Edit bash profile to include rvm", 'echo \'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"\' >> ~/.bash_profile'
+    if shell('echo $HOME') =~ /.*root.*/ 
+        log_shell "Edit bash profile to include rvm", 'echo \'[[ -s "/usr/local/rvm/bin/rvm" ]] && . "/usr/local/rvm/bin/rvm' >> ~/.bash_profile'
+    else
+        log_shell "Edit bash profile to include rvm", 'echo \'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"\' >> ~/.bash_profile'
+    end
     log_shell "Reload bash profile", 'source .bash_profile'
   }
 end
