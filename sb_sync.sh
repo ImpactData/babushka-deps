@@ -5,7 +5,7 @@ sudo mongodump -h pearl.mongohq.com:27091 -d app457548 -u heroku -p 1tcvkdn5otep
 #restore mongo database
 mongorestore --db torsion-production /files/mongo/app438149
 #invoke heroku backup process
-rvw use ree
+rvm use ree
 heroku pgbackups:capture --expire
 #get postgres backup files
 curl -o /files/postgresql/freshest.dump `heroku pgbackups:url --app squawkbox`
