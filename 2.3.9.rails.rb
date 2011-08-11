@@ -10,7 +10,11 @@ end
 
 meta :aptget do
   def aptget args
-    sudo("apt-get --assume-yes install #{args}")
+    if shell('echo $HOME') =~ /.*root.*/
+        shell("apt-get --assume-yes install #{args}")
+    else
+        sudo("apt-get --assume-yes install #{args}")
+    end
   end
 end
 
