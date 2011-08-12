@@ -1,3 +1,11 @@
+#generating a self signed key
+#openssl genrsa -des3 -out server.key 1024
+#openssl req -key server.key -out server.csr
+#openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+#cp server.key server.key.secure
+#openssl rsa -in server.key.secure -out server.key
+#openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
 dep 'install_nginx_passenger.aptget' do
   requires 'add_passenger_brightbox_repo'
   
