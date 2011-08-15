@@ -8,4 +8,6 @@ echo "rvm use ree" > /var/www/squawkbox/.rvmrc
 cd /var/www/squawkbox/ && git checkout production
 cd /var/www/squawkbox/ && /usr/local/rvm/bin/rvm use ree && /usr/local/rvm/gems/ree*/bin/bundle install
 chmod 777 -R /var/www/squawkbox/log
+mkdir /var/www/squawkbox/tmp
+chmod 777 -R /var/www/squawkbox/tmp
 sudo service nginx start
