@@ -26,7 +26,7 @@ end
 dep '2.3.9.rails.rvm' do
     #log("set rvm ruby version")
     #rvm('~/.rvm/bin/rvm use ree')
-    requires 'rubygems.aptget', '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'postgres.gem', 'mongo.aptget' 
+    requires 'rubygems.aptget', '2.3.9.rails.gem', 'bundler.gem', 'heroku.gem', 'thin.gem', 'passenger.gem', 'postgres.gem', 'mongo.aptget' 
 end
 
 dep '2.3.9.rails.gem' do
@@ -63,3 +63,7 @@ dep 'thin.gem' do
     meet { gem('install thin') }
 end
 
+dep 'passenger.gem' do
+    met? { gem('list passenger')['passenger'] }   
+    meet { gem('install passenger') }
+end
