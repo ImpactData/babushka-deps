@@ -14,7 +14,12 @@ dep 'append_bashrc' do
 		shell('grep rvm/scripts ~/.bashrc') =~ /.*rvm.scripts.*/
 	} 
 	meet {
-		shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> ~/.bashrc")
+                if shell('echo $HOME') =~ /.*root.*/
+                        shell("echo '[[ -s \"/usr/local/rvm/scripts/rvm\" ]] && . \"/usr/local/rvm/scripts/rvm\"' >> ~/.bashrc")
+   		else
+			shell("echo '[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && . \"$HOME/.rvm/scripts/rvm\"' >> ~/.bashrc")
+                end
+
 		log "Run $source ~/.bashrc"
 		log "For this to take effect"
 	}
