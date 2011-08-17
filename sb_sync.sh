@@ -10,4 +10,4 @@ cd /var/www/squawkbox/ && /usr/local/rvm/bin/rvm use ree && /usr/local/rvm/gems/
 chmod 777 -R /var/www/squawkbox/log
 mkdir /var/www/squawkbox/tmp
 chmod 777 -R /var/www/squawkbox/tmp
-sudo service nginx start
+#sudo service nginx start
