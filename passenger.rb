@@ -8,6 +8,7 @@
 
 #create the databases manually rather than through rake db:create:all (because it doesn't work)
 #sudo -u postgres psql -U postgres -c "alter user torsion with password 'torsion' createdb;"
+#sudo -u postgres psql template1 -c "alter role torsion with superuser"
 #sudo -u postgres psql -U postgres -c "create database torsion;"
 #sudo -u postgres psql -U postgres -c "create database torsion_development;"
 #sudo -u postgres psql -U postgres -c "create database torsion_test;"
