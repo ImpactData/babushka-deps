@@ -6,8 +6,17 @@ end
 dep 'squawkbox_setup' do
     requires 'squawkbox_bundle', 'rvmrc'    
     log "Upon successfully installation of sqauwkbox"
-	log "cd Squawkbox"
+    log "cd Squawkbox"
     log "change hosts file to include; 0.0.0.0 development"
+    log "edit nginx.conf"
+    log "server {"
+    log "    listen    3000;"
+    log "    server_name development;"
+    log "    root      /<location>/squawkbox/public;"
+    log "    rails_env development;"
+    log "    passenger_enabled on;"
+    log "}"
+    
 end
 
 dep 'rvmrc' do 
