@@ -6,6 +6,18 @@
 #openssl rsa -in server.key.secure -out server.key
 #openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
+#create the databases manually rather than through rake db:create:all (because it doesn't work)
+#sudo -u postgres psql -U postgres -c "alter user torsion with password 'torsion';"
+#sudo -u postgres psql -U postgres -c "create database torsion;"
+#sudo -u postgres psql -U postgres -c "create database torsion_development;"
+#sudo -u postgres psql -U postgres -c "create database torsion_test;"
+#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion to 'torsion';"
+#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion_development to 'torsion';"
+#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion_test to 'torsion';"
+#to list databases you've created
+#sudo -u postgres psql -U postgres -c "\l"
+
+
 dep 'install_nginx_passenger.aptget' do
   requires 'add_passenger_brightbox_repo'
   
