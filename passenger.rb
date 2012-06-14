@@ -12,9 +12,9 @@
 #sudo -u postgres psql -U postgres -c "create database torsion;"
 #sudo -u postgres psql -U postgres -c "create database torsion_development;"
 #sudo -u postgres psql -U postgres -c "create database torsion_test;"
-#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion to 'torsion';"
-#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion_development to 'torsion';"
-#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion_test to 'torsion';"
+#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion to torsion;"
+#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion_development to torsion;"
+#sudo -u postgres psql -U postgres -c "grant all privileges on database torsion_test to torsion;"
 #to list databases you've created
 #sudo -u postgres psql -U postgres -c "\l"
 
